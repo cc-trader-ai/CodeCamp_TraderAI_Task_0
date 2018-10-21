@@ -23,7 +23,7 @@ if __name__ == "__main__":
         # Code-Camp Task 0 traders
         ('Team Blue Simple Trader (perfect prediction)', Traders.TeamBlueSimpleTrader_with_perfect_prediction()),
         ('Team Green Simple Trader (perfect prediction)', Traders.TeamGreenSimpleTrader_with_perfect_prediction()),
-        ('Team Pink Simple Trader (perfect prediction)', Traders.TeamPinkSimpleTrader_with_perfect_prediction()),
+        ('Team Black Simple Trader (perfect prediction)', Traders.TeamBlackSimpleTrader_with_perfect_prediction()),
         ('Team Red Simple Trader (perfect prediction)', Traders.TeamRedSimpleTrader_with_perfect_prediction()),
                                     
     ]
