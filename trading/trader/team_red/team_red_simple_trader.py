@@ -5,9 +5,12 @@ Created on 08.11.2017
 """
 from model.Portfolio import Portfolio
 from model.StockMarketData import StockMarketData
+from model.CompanyEnum import CompanyEnum
 from model.ITrader import ITrader
 from model.Order import OrderList
 from model.IPredictor import IPredictor
+
+from logger import logger
 
 class TeamRedSimpleTrader(ITrader):
     """
@@ -35,8 +38,12 @@ class TeamRedSimpleTrader(ITrader):
           A OrderList instance, may be empty never None
         """
 
-        result = OrderList()
+        orders = OrderList()
 
-        #TODO: implement trading logic
+        for share in portfolio.shares:
+            price = stock_market_data.get_most_recent_price(share.company_enum)
+            logger.info("Cash: {0}, Price: {1}".format(portfolio.cash, price))
+            if price and portfolio.cash > price:
+                orders.buy(CompanyEnum.COMPANY_A, 1)
 
-        return result
+        return orders
