@@ -40,16 +40,15 @@ class TeamRedSimpleTrader(ITrader):
 
         orders = OrderList()
 
+        cheapest_company = min(list(CompanyEnum), key=lambda c: stock_market_data.get_most_recent_price(c))
+
         cash_per_comp = portfolio.cash / stock_market_data.get_number_of_companies()
 
-
-        for share in portfolio.shares:
-            price = stock_market_data.get_most_recent_price(share.company_enum)
-            num_shares_to_buy = cash_per_comp // price
-            if num_shares_to_buy > 0:
-                orders.buy(share.company_enum, num_shares_to_buy)
+        #for company in list(CompanyEnum):
+        price = stock_market_data.get_most_recent_price(cheapest_company)
+        num_shares_to_buy = cash_per_comp // price
+        if num_shares_to_buy > 0:
+            orders.buy(cheapest_company, num_shares_to_buy)
             logger.info("Bought {0} shares.".format(num_shares_to_buy))
-
-
 
         return orders
