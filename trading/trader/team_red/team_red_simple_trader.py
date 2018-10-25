@@ -26,17 +26,6 @@ class TeamRedSimpleTrader(ITrader):
 
     def doTrade(self, portfolio: Portfolio, current_portfolio_value: float,
                 stock_market_data: StockMarketData) -> OrderList:
-        """
-        Generate action to be taken on the "stock market"
-    
-        Args:
-          portfolio : current Portfolio of this trader
-          current_portfolio_value : value of Portfolio at given Momemnt
-          stock_market_data : StockMarketData for evaluation
-
-        Returns:
-          A OrderList instance, may be empty never None
-        """
 
         orders = OrderList()
 
@@ -44,7 +33,6 @@ class TeamRedSimpleTrader(ITrader):
 
         cash_per_comp = portfolio.cash / stock_market_data.get_number_of_companies()
 
-        #for company in list(CompanyEnum):
         price = stock_market_data.get_most_recent_price(cheapest_company)
         num_shares_to_buy = cash_per_comp // price
         if num_shares_to_buy > 0:
